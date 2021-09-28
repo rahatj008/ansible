@@ -1,0 +1,8 @@
+---
+# tasks file for first-role
+  - import_tasks: install.yml
+  - import_tasks: document.yml
+  - import_tasks: php.yml
+  - import_tasks: composer.yml
+
+    

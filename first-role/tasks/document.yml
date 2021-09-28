@@ -1,0 +1,29 @@
+---
+  - name: create document root
+    become: yes
+    file:
+      path: "/var/www/html/"
+      state: directory
+      owner: "{{ app_user }}"
+      group: "{{ app_user }}"
+      mode: '0755'
+  - name: copy index page
+    become: yes
+    template:
+      src: "files/index.html.j2"
+      dest: "/var/www/{{ apache_path }}/index.html"
+
+#   - name: Set up Apache virtuahHost
+#       template:
+#         src: "files/apache.conf.j2"
+#         dest: "/etc/apache2/sites-available/{{ http_conf }}"
+
+#   - name: Enable new site
+#       shell: /usr/sbin/a2ensite {{ http_conf }}
+#       notify: Reload Apache
+
+#   - name: Disable default Apache site
+#       shell: /usr/sbin/a2dissite 000-default.conf
+#       when: disable_default
+#       notify: Reload Apache
+

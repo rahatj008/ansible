@@ -1,0 +1,9 @@
+---
+# vars file for first-role
+app_user: www-data
+apache_path: "html"
+http_host: "proplatform.breakoutedu.com"
+http_conf: "breakoutedu.conf"
+http_port: "80"
+disable_default: true
+php: "php7.4"
