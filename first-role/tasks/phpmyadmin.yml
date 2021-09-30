@@ -1,0 +1,15 @@
+---
+  - name: install phpmyadmin-server
+    become: yes
+    apt: 
+      name: mysql-server
+      update_cache: yes
+      state: latest
+
+  - name: adding phpmyadmin config file
+    shell:
+      echo 'Include /etc/phpmyadmin/apache.conf' >> /etc/apache2/apache2.conf
+
+    notify:
+      - restart mysql
+      - restart apache2

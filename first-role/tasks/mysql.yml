@@ -1,0 +1,37 @@
+---
+  - name: install mysql-server
+    become: yes
+    apt: 
+      name: mysql-server
+      update_cache: yes
+      state: latest
+    notify:
+      - restart mysql
+
+  - name: Adding MySQL DB
+      mysql_db:
+        name: testdb
+        login_user: root 
+        state: present
+
+  - name: Changing root password    
+      mysql_user:
+        login_host: 'localhost'
+        login_user: 'root'
+        login_password: ''
+        name: 'root'
+        password: '{{ mysql_pass }}'
+        state: present
+    notify:
+      - restart mysql
+
+  - name: Configure my.cnf
+      copy: 
+        src: "./templates/my.cnf"
+        dest: "/etc/mysql/my.cnf"
+        owner: {{ app_user }}
+        group: {{ app_user }}
+        mode: '0755'
+    notify:
+      - restart mysql
+  
