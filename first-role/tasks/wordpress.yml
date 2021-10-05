@@ -1,43 +1,32 @@
 ---
  - name: Install prerequisites
-   apt: name=aptitude update_cache=yes state=latest force_apt_get=yes
+   apt: 
+     name: aptitude 
+     update_cache: yes
+     state: latest 
+     force_apt_get: yes
    tags: [ system ]
  
  - name: "Cloning & Unzipping wordpress"
-    become: yes
-    unarchive: https://wordpress.org/latest.tar.gz
-      src: "var/www/{{ http_host }}"
-      creates: "/var/www/{{ http_host }}/wordpress"
-    tags: [ wordpress ]
+   unarchive:
+     src: https://wordpress.org/latest.tar.gz
+     dest: /var/www/html
+     remote_src: yes
+   tags: [ wordpress ]
 
  - name: Set ownership
-      file:
-        path: "/var/www/{{ http_host }}"
-        state: directory
-        recurse: yes
-        owner: www-data
-        group: www-data
-      tags: [ wordpress ]
+   file: path="/var/www/html" state=directory recurse=yes owner="{{ app_user }}" group="{{ app_user }}"
+   tags: [ wordpress-permsission-grant ]
 
-  - name: Installation PHP 7.2
-    become: yes
-    apt: name=php7.2 state=present
+ - name: Copy sample config file
+   command: mv /var/www/html/wordpress/wp-config-sample.php /var/www/html/wordpress/wp-config.php creates=/var/www/html/wordpress/wp-config.php
+   become: yes
 
-  - name: install lamp stack
-    become: yes
-    apt:
-      pkg:
-        - php7.2-mysql
-        - php7.2-curl
-        - php7.2-json
-        - php7.2-cgi
-        - php7.2-xsl
-        - php7.2-cgi
-        - php7.2-gd
-        - php7.2-mbstring
-        - php7.4-xmlrpc
-        - php7.4-soap
-        - php7.4-intl
-        - libapache2-mod-php
-      state: present
-      update_cache: yes
+ - name: Update WordPress config file
+   become: yes
+   template:
+     src: "files/wp-config.j2"
+     dest: "/var/www/html/wordpress/wp-config.php"
+  
+
+ 

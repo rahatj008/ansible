@@ -1,2 +1,2 @@
 [preproduction]
-35.166.135.233
+175.107.200.85 ansible_ssh_user=root ansible_ssh_pass=gOlpik0! ansible_ssh_port=2319 ansible_python_interpreter=/usr/bin/python3
