@@ -25,5 +25,3 @@
       mode: '0755'
     notify:
       - restart apache
-    notify:
-      - restart apache
