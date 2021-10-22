@@ -6,15 +6,10 @@
     validate_certs: no
 
   - name: Extract WordPress
-      unarchive: 
-        src: /home/test/Downloads/wordpress.tar.gz 
-        dest: /var/www/html/ 
+    unarchive: 
+      src: /home/test/Downloads/wordpress.tar.gz 
+      dest: /var/www/html/ 
     become: yes
 
   - name: Configure my.cnf
-      copy: 
-       src: "./first-role/files/wp-config.j2"
-       dest: "/var/www/html/wordpress/wp-config"
-       owner: {{ app_user }}
-       group: {{ app_user }}
-       mode: '0755'
+    copy: src="./first-role/files/wp-config.j2" dest="/var/www/html/wordpress/wp-config" owner={{ app_user }} group={{ app_user }} mode='0755'
