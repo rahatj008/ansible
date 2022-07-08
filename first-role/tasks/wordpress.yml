@@ -1,0 +1,23 @@
+  - name: Creating Wordpress directory
+    file:
+      path: "{{ staging_link_path }}/{{ staging_link }}" 
+      state: directory
+      group: "{{ apache_user }}"
+      owner: "{{ apache_user }}"
+      mode: "755"
+    become: true
+
+  - name: Copy WordPress from /var/www/html to link
+    copy:
+      src: "{{ staging_link_path }}/wordpress/"
+      dest: "{{ staging_link_path }}/{{ staging_link }}"
+      remote_src: yes
+      group: "{{ apache_user }}"
+      owner: "{{ apache_user }}"
+      mode: "755"       
+    become: true
+
+  - name: Set up wp-config
+    template:
+      src: "./templates/wp-config.php.j2"
+      dest: "{{ staging_link_path }}/{{ staging_link }}/wp-config.php"

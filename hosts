@@ -1,2 +1,2 @@
-[preproduction]
-192.5.10.47 ansible_ssh_user=root ansible_ssh_pass=gOlpik0! ansible_ssh_port=22 ansible_python_interpreter=/usr/bin/python3
+[server]
+167.172.13.115 ansible_ssh_user=root ansible_ssh_pass=MsnE4kEC6EhpjANC ansible_ssh_port=22 ansible_python_interpreter=/usr/bin/python3

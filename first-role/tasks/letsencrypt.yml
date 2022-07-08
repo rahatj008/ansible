@@ -1,0 +1,3 @@
+---
+  - name: "install SSL certificates"
+    command: "certbot --apache -d {{ staging_link }} -m {{ email }}--agree-tos --noninteractive --redirect"

@@ -2,26 +2,10 @@
   - name: Set up Apache virtuahHost
     template:
       src: "files/apache2.conf.j2"
-      dest: "/etc/apache2/sites-available/{{ app_url_conf }}"
+      dest: "/etc/apache2/sites-available/{{ staging_link }}.conf"
 
   - name: Enable new site
-    shell: /usr/sbin/a2ensite {{ app_url_conf }}
+    shell: /usr/sbin/a2ensite {{ staging_link }}.conf
     notify: 
       - restart apache
 
-  - name: Disable default Apache site
-    shell: /usr/sbin/a2dissite 000-default.conf
-    when: disable_default
-    notify: 
-      - restart apache
-
-  - name: Default htaccess
-    become: yes
-    template: 
-      src: "files/htaccess.j2"
-      dest: "/var/www/html/wordpress"
-      owner: "{{ app_user }}"
-      group: "{{ app_user }}"
-      mode: '0755'
-    notify:
-      - restart apache

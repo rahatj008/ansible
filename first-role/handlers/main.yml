@@ -1,13 +1,7 @@
 # handlers file for first-role
 ---
   - name: restart apache
-    become: yes
+    become: true
     service:
       name: apache2
-    state: restarted
-
-  - name: restart mysql
-    become: yes
-    service:
-      name: mysql
-    state: restarted
+      state: reloaded

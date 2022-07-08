@@ -1,6 +1,6 @@
 ---
 # vars file for first-role
-app_user: www-data
+apache_user: "www-data"
 apache_path: "html"
 http_host: "project"
 http_conf: "breakoutedu.conf"
@@ -11,4 +11,9 @@ wp_mysql_db: "testdb"
 mysql_user: "root"
 mysql_password: "gOlpik0!"
 ansible_python_interpreter: /usr/bin/python3
-app_url_conf: "wordpress.conf"
+staging_link_path: "/var/www/html"
+staging_link: "{{ staging }}.yourdesigndemo.net"
+staging: staging40
+staging_link_conf:
+email: rahat.jawaid@ossols.com
+mysql_root_password: "MsnE4kEC6EhpjANC"
