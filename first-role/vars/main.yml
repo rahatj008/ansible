@@ -12,8 +12,8 @@ mysql_user: "root"
 mysql_password: "gOlpik0!"
 ansible_python_interpreter: /usr/bin/python3
 staging_link_path: "/var/www/html"
-staging_link: "{{ staging }}.yourdesigndemo.net"
-staging: staging40
+staging_link: "staging154.yourdesigndemo.net"
+staging: staging154
 staging_link_conf:
 email: rahat.jawaid@ossols.com
 mysql_root_password: "MsnE4kEC6EhpjANC"

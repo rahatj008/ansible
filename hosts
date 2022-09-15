@@ -1,2 +1,5 @@
-[server]
+[staging]
 167.172.13.115 ansible_ssh_user=root ansible_ssh_pass=MsnE4kEC6EhpjANC ansible_ssh_port=22 ansible_python_interpreter=/usr/bin/python3
+
+[live]
+157.230.64.36 ansible_ssh_user=root ansible_ssh_pass=80X2eN4Z4C7vljoG ansible_ssh_port=22 ansible_python_interpreter=/usr/bin/python3

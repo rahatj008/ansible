@@ -21,3 +21,8 @@
     template:
       src: "./templates/wp-config.php.j2"
       dest: "{{ staging_link_path }}/{{ staging_link }}/wp-config.php"
+  
+  - name: Set up .htaccess
+    template:
+      src: "./templates/.htaccess.j2"
+      dest: "{{ staging_link_path }}/{{ staging_link }}/wp-admin/.htaccess"

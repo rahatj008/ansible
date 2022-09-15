@@ -1,6 +1,7 @@
 -
  name: this is my main playbook role
- hosts: all
+ hosts: staging
  roles:
    - first-role
+
 

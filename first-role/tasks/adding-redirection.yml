@@ -1,0 +1,24 @@
+---
+  - name: Adding Redirect Permanent
+    become: yes
+    become_user: root
+    tags: redirect-permanent
+    lineinfile: 
+      path: /etc/apache2/sites-available/{{ staging_link }}.conf
+      insertafter: "DirectoryIndex" 
+      line: "     Redirect permanent / https://{{ staging_link }}"
+      firstmatch: yes
+      state: present   
+
+  - name: "Adding ServerAlias to redirect withwww"
+    become: yes
+    become_user: root
+    tags: ServerAlias
+    lineinfile:
+      path: /etc/apache2/sites-available/{{ staging_link }}.conf
+      insertafter: "ServerName" 
+      line: "     ServerAlias www.{{ staging_link }}"
+      firstmatch: yes
+      state: present
+    notify:
+      - restart apache
